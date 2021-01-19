@@ -20,27 +20,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Date date = new Date();
-        TextView textView = (TextView) findViewById(R.id.textView3);
-        //long time = date.getTime();
+        //Date date = new Date();
+        //TextView textView = (TextView) findViewById(R.id.textView3);
+        /*long time = date.getTime();
         //long newTime = date.getTime();
         Button button = (Button) findViewById(R.id.button3); //Button to change the time displayed on screen
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long time = date.getTime();
-                textView.setText(Long.toString(time));
+                long newTime = date.getTime();
+                textView.setText(Long.toString(newTime));
             }
-        });
+        });*/
         //за ся до тук
     }
 
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        /*Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        startActivity(intent);*/
+
+        //Този код е за new activity, защото има само един sendMessage method на activity
+        TextView textView = (TextView) findViewById(R.id.textView3);
+        Button button = (Button) findViewById(R.id.button3);
+
+        Date date = new Date();
+        long time = date.getTime();
+        textView.setText(Long.toString(time));
     }
 }
