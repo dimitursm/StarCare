@@ -22,10 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
         Date date = new Date();
         TextView textView = (TextView) findViewById(R.id.textView3);
-        long time = date.getTime();
-        long newTime = date.getTime();
-        newTime = date.getTime();
+        //long time = date.getTime();
+        //long newTime = date.getTime();
         Button button = (Button) findViewById(R.id.button3); //Button to change the time displayed on screen
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long time = date.getTime();
+                textView.setText(Long.toString(time));
+            }
+        });
         //за ся до тук
     }
 
