@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,12 @@ import java.sql.Time;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView countdownText;
+    private Button countdownButton;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMilliseconds = 1200000;
+    private boolean timerRunning;
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
@@ -20,35 +27,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Date date = new Date();
-        //TextView textView = (TextView) findViewById(R.id.textView3);
-        /*long time = date.getTime();
-        //long newTime = date.getTime();
-        Button button = (Button) findViewById(R.id.button3); //Button to change the time displayed on screen
-        button.setOnClickListener(new View.OnClickListener() {
+        countdownText = findViewById(R.id.countdown_text);
+        countdownButton = findViewById(R.id.countdown_button);
+
+        countdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                long newTime = date.getTime();
-                textView.setText(Long.toString(newTime));
+            public void onClick(View view) {
+                startStop();
             }
-        });*/
-        //за ся до тук
+        });
     }
 
-    /** Called when the user taps the Send button */
-    public void sendMessage(View view) {
-        /*Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);*/
+    public void startStop() {
+        if (timerRunning) {
+            stopTimer();
+        } else {
+            startTimer();
+        }
+    }
 
-        //Този код е за new activity, защото има само един sendMessage method на activity
-        TextView textView = (TextView) findViewById(R.id.textView3);
-        Button button = (Button) findViewById(R.id.button3);
+    public void startTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateTimer();
+            }
 
-        Date date = new Date();
-        long time = date.getTime();
-        textView.setText(Long.toString(time));
+            //On finish function
+            @Override
+            public void onFinish() {
+                timeLeftInMilliseconds = 1200000;
+            }
+        }.start();
+
+        countdownButton.setText("PAUSE");
+        timerRunning = true;
+    }
+
+    public void stopTimer() {
+        countdownButton.setText("START");
+        countDownTimer.cancel();
+        timerRunning = false;
+    }
+
+    public void updateTimer() {
+        int minutes = (int) timeLeftInMilliseconds / 60000;
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+
+        String timeLeftText;
+
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if (seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        countdownText.setText(timeLeftText);
     }
 }
