@@ -14,74 +14,16 @@ import java.sql.Time;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView countdownText;
-    private Button countdownButton;
-
-    private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 1200000;
-    private boolean timerRunning;
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        countdownText = findViewById(R.id.countdown_text);
-        countdownButton = findViewById(R.id.countdown_button);
-
-        countdownButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startStop();
-            }
-        });
     }
 
-    public void startStop() {
-        if (timerRunning) {
-            stopTimer();
-        } else {
-            startTimer();
-        }
-    }
-
-    public void startTimer() {
-        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
-            @Override
-            public void onTick(long l) {
-                timeLeftInMilliseconds = l;
-                updateTimer();
-            }
-
-            //On finish function
-            @Override
-            public void onFinish() {
-                timeLeftInMilliseconds = 1200000;
-            }
-        }.start();
-
-        countdownButton.setText("PAUSE");
-        timerRunning = true;
-    }
-
-    public void stopTimer() {
-        countdownButton.setText("START");
-        countDownTimer.cancel();
-        timerRunning = false;
-    }
-
-    public void updateTimer() {
-        int minutes = (int) timeLeftInMilliseconds / 60000;
-        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
-
-        String timeLeftText;
-
-        timeLeftText = "" + minutes;
-        timeLeftText += ":";
-        if (seconds < 10) timeLeftText += "0";
-        timeLeftText += seconds;
-
-        countdownText.setText(timeLeftText);
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, Timer.class);
+        startActivity(intent);
     }
 }
