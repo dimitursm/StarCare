@@ -2,6 +2,6 @@
     <string name="app_name">Android Studio Tutorial</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
-    <string name="button_start">New time</string>
-    <string name="time">00:00:00.0</string>
+    <string name="button_start">Start</string>
+    <string name="time">00:00</string>
 </resources>
