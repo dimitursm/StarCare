@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFirstApp">
         <activity
+            android:name=".PopActivity"
+            android:theme="@style/Theme.MyFirstApp.PopMe">
+        </activity>
+        <activity
             android:name=".Timer"
             android:parentActivityName=".MainActivity">
 
@@ -27,4 +31,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

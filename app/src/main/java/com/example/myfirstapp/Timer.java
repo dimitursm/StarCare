@@ -2,10 +2,9 @@ package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.MediaPlayer;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,10 +13,9 @@ public class Timer extends AppCompatActivity {
 
     private TextView countdownText;
     private Button countdownButton;
-    private boolean Whichtimer = true;
 
     private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 10000;
+    private long timeLeftInMilliseconds = 5000;
     private boolean timerRunning;
 
     //public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -37,26 +35,6 @@ public class Timer extends AppCompatActivity {
         });
     }
 
-//    public void playSound(){
-//        MediaPlayer mp;
-//
-//        mp = MediaPlayer.create(this, R.raw.alarma);
-//
-//        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//            @Override
-//            public void onPrepared(MediaPlayer mp) {
-//                mp.start();
-//            }
-//        });
-//
-//        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                mp.release();
-//            }
-//        });
-//    }
-
     public void startStop() {
         if (timerRunning) {
             stopTimer();
@@ -75,23 +53,11 @@ public class Timer extends AppCompatActivity {
 
             //On finish function
             @Override
-            public void onFinish()
-            {
-                if (Whichtimer){
-                    timeLeftInMilliseconds = 20000;
-                    Whichtimer = false;
-//                    playSound();
-                } else {
-                    timeLeftInMilliseconds = 1200000;
-                    Whichtimer = true;
-                }
-                timerRunning = false;
-                startStop();
-
-
+            public void onFinish() {
+                timeLeftInMilliseconds=5000;
+                Intent i = new Intent(getApplicationContext(), PopActivity.class);
+                startActivity(i);
             }
-
-
         }.start();
 
         countdownButton.setText("PAUSE");
@@ -117,6 +83,4 @@ public class Timer extends AppCompatActivity {
 
         countdownText.setText(timeLeftText);
     }
-
-
 }
