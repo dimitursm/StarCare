@@ -1,6 +1,8 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Service;
 import android.content.Intent;
@@ -17,15 +19,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<ExampleItem> exampleList = new ArrayList<>();
+        exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Line 1", "Line 2"));
+        exampleList.add(new ExampleItem(R.drawable.ic_audio, "Line 3", "Line 4"));
+        exampleList.add(new ExampleItem(R.drawable.ic_sun, "Line 5", "Line 6"));
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ExampleAdapter(exampleList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     public void sendMessage(View view) {
