@@ -11,11 +11,11 @@
         android:id="@+id/textView2"
         android:layout_width="219dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/pop_up"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

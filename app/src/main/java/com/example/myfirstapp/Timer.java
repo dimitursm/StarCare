@@ -57,6 +57,8 @@ public class Timer extends AppCompatActivity {
                 timeLeftInMilliseconds=5000;
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
                 startActivity(i);
+                updateTimer();
+                stopTimer();
             }
         }.start();
 

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendMessage(View view) {
 
-        startService(new Intent(this, ChatHeadService.class));
+        startActivity(new Intent(this, Timer.class));
     }
 }
 
