@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class Timer extends AppCompatActivity {
@@ -33,6 +34,13 @@ public class Timer extends AppCompatActivity {
                 startStop();
             }
         });
+    }
+
+    public void sendMessage(View view) {
+        EditText chooseButton = (EditText)findViewById(R.id.changeTime);
+        long newTime = Long.valueOf(chooseButton.getText().toString());
+
+        timeLeftInMilliseconds = newTime;
     }
 
     public void startStop() {

@@ -3,5 +3,7 @@
     <string name="change_activity">Go to Timer</string>
     <string name="button_start">Start</string>
     <string name="time">00:00</string>
+    <string name="set_time">Set time</string>
+    <string name="pick_time">Choose time in milliseconds</string>
     <string name="pop_up">Take a break.</string>
 </resources>
