@@ -14,9 +14,10 @@ public class Timer extends AppCompatActivity {
 
     private TextView countdownText;
     private Button countdownButton;
+    private long savetime = 0;
 
     private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 5000;
+    private long timeLeftInMilliseconds = 1200000;
     private boolean timerRunning;
 
     //public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -38,9 +39,31 @@ public class Timer extends AppCompatActivity {
 
     public void sendMessage(View view) {
         EditText chooseButton = (EditText)findViewById(R.id.changeTime);
-        long newTime = Long.valueOf(chooseButton.getText().toString());
+        long newTime;
+
+        try {
+            newTime = Long.valueOf(chooseButton.getText().toString());
+            timeLeftInMilliseconds = newTime;
+        }
+        catch(Exception e){
+            timeLeftInMilliseconds = 1200000;
+            newTime = 1200000;
+        } finally {
+            updateTimer();
+        }
 
         timeLeftInMilliseconds = newTime;
+        savetime = newTime;
+
+        int minutes = (int) timeLeftInMilliseconds / 60000;
+        int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
+        String timeLeftText;
+        timeLeftText = "" + minutes;
+        timeLeftText += ":";
+        if (seconds < 10) timeLeftText += "0";
+        timeLeftText += seconds;
+
+        countdownText.setText(timeLeftText);
     }
 
     public void startStop() {
@@ -62,11 +85,12 @@ public class Timer extends AppCompatActivity {
             //On finish function
             @Override
             public void onFinish() {
-                timeLeftInMilliseconds=5000;
+                timeLeftInMilliseconds = savetime;
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
                 startActivity(i);
                 updateTimer();
                 stopTimer();
+                updateTimer();
             }
         }.start();
 

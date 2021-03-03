@@ -36,6 +36,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginEnd="16dp"
         android:text="@string/set_time"
+        android:onClick="sendMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toEndOf="@+id/changeTime"

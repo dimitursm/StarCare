@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
-        exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Line 1", "Line 2"));
-        exampleList.add(new ExampleItem(R.drawable.ic_audio, "Line 3", "Line 4"));
-        exampleList.add(new ExampleItem(R.drawable.ic_sun, "Line 5", "Line 6"));
+        exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Profile Gaming", ""));
+        exampleList.add(new ExampleItem(R.drawable.ic_audio, "Profile Music", "Line 4"));
+        exampleList.add(new ExampleItem(R.drawable.ic_sun, "Profile Reading a book", "Line 6"));
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
