@@ -1,9 +1,13 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -22,16 +26,27 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.example.myfirstapp.App.CHANNEL_1_ID;
+import static com.example.myfirstapp.App.CHANNEL_2_ID;
+
 public class MainActivity extends AppCompatActivity {
+    private NotificationManagerCompat notificationManager;
+    private EditText editTextTitle;
+    private EditText editTextMessage;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notificationManager = NotificationManagerCompat.from(this);
+
+
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
         exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Profile Gaming", ""));
@@ -45,6 +60,28 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+    }
+    public void sendOnChannel1(View v) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+            .setSmallIcon(R.drawable.ic_gamepad)
+            .setContentTitle("Time to take a break!")
+            .setContentText("Its been 20 minutes")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+            .build();
+
+        notificationManager.notify(1, notification);
+    }
+
+    public void sendOnChannel2(View v) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
+                .setSmallIcon(R.drawable.ic_gamepad)
+                .setContentTitle("Time to take a break!")
+                .setContentText("Its been 20 minutes")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .build();
+
+        notificationManager.notify(2, notification);
     }
 
     public void sendMessage(View view) {

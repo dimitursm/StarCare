@@ -2,12 +2,15 @@ package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.WindowManager;
 
-public class PopActivity extends AppCompatActivity {
+public class PopActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,4 +32,5 @@ public class PopActivity extends AppCompatActivity {
 
         getWindow().setAttributes(params);
     }
+
 }
