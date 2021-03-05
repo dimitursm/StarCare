@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,28 +62,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
-    public void sendOnChannel1(View v) {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-            .setSmallIcon(R.drawable.ic_gamepad)
-            .setContentTitle("Time to take a break!")
-            .setContentText("Its been 20 minutes")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-            .build();
+    //tva sa dvete funkcii
 
-        notificationManager.notify(1, notification);
-    }
-
-    public void sendOnChannel2(View v) {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
-                .setSmallIcon(R.drawable.ic_gamepad)
-                .setContentTitle("Time to take a break!")
-                .setContentText("Its been 20 minutes")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .build();
-
-        notificationManager.notify(2, notification);
-    }
 
     public void sendMessage(View view) {
         startActivity(new Intent(this, Timer.class));

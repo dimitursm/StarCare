@@ -1,7 +1,10 @@
 package com.example.myfirstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,8 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Timer extends AppCompatActivity {
+import static com.example.myfirstapp.App.CHANNEL_1_ID;
+import static com.example.myfirstapp.App.CHANNEL_2_ID;
 
+public class Timer extends AppCompatActivity {
+    private NotificationManagerCompat notificationManager;
     private TextView countdownText;
     private Button countdownButton;
     private long savetime = 0;
@@ -24,6 +30,9 @@ public class Timer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        notificationManager = NotificationManagerCompat.from(this);
+
         setContentView(R.layout.activity_timer);
 
         countdownText = findViewById(R.id.countdown_text);
@@ -85,6 +94,7 @@ public class Timer extends AppCompatActivity {
             //On finish function
             @Override
             public void onFinish() {
+                sendOnChannel1();
                 timeLeftInMilliseconds = savetime;
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
                 startActivity(i);
@@ -116,5 +126,28 @@ public class Timer extends AppCompatActivity {
         timeLeftText += seconds;
 
         countdownText.setText(timeLeftText);
+    }
+
+    public void sendOnChannel1() {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_gamepad)
+                .setContentTitle("Time to take a break!")
+                .setContentText("Its been 20 minutes")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        notificationManager.notify(1, notification);
+    }
+
+    public void sendOnChannel2(View v) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
+                .setSmallIcon(R.drawable.ic_gamepad)
+                .setContentTitle("Time to take a break!")
+                .setContentText("Its been 20 minutes")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .build();
+
+        notificationManager.notify(2, notification);
     }
 }
