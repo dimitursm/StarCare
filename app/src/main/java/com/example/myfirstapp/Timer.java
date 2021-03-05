@@ -52,17 +52,16 @@ public class Timer extends AppCompatActivity {
 
         try {
             newTime = Long.valueOf(chooseButton.getText().toString());
-            timeLeftInMilliseconds = newTime;
+            timeLeftInMilliseconds = newTime*1000;
         }
         catch(Exception e){
             timeLeftInMilliseconds = 1200000;
-            newTime = 1200000;
+            newTime = 1200;
         } finally {
             updateTimer();
         }
 
-        timeLeftInMilliseconds = newTime;
-        savetime = newTime;
+        savetime = newTime*1000;
 
         int minutes = (int) timeLeftInMilliseconds / 60000;
         int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
@@ -95,11 +94,11 @@ public class Timer extends AppCompatActivity {
             @Override
             public void onFinish() {
                 sendOnChannel1();
-                timeLeftInMilliseconds = savetime;
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
                 startActivity(i);
                 updateTimer();
                 stopTimer();
+                timeLeftInMilliseconds = savetime;
                 startTimer();
             }
         }.start();

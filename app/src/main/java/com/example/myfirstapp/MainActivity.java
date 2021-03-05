@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
-        exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Profile Gaming", ""));
-        exampleList.add(new ExampleItem(R.drawable.ic_audio, "Profile Music", "Line 4"));
-        exampleList.add(new ExampleItem(R.drawable.ic_sun, "Profile Reading a book", "Line 6"));
+        exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Profile Gaming", "Time between breaks: 20min"));
+        exampleList.add(new ExampleItem(R.drawable.ic_audio, "Profile Music", "Time between breaks 30min"));
+        exampleList.add(new ExampleItem(R.drawable.ic_sun, "Profile Reading a book", "Time between breaks 40min"));
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);

@@ -48,7 +48,7 @@
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="Choose time in milliseconds"
+        android:hint="Choose time in seconds"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/SetTime"
