@@ -100,7 +100,7 @@ public class Timer extends AppCompatActivity {
                 startActivity(i);
                 updateTimer();
                 stopTimer();
-                updateTimer();
+                startTimer();
             }
         }.start();
 
