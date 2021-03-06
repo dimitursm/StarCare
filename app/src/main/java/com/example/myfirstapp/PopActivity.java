@@ -19,6 +19,8 @@ import static com.example.myfirstapp.App.CHANNEL_2_ID;
 
 public class PopActivity extends AppCompatActivity{
 
+    static boolean active = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,5 +42,16 @@ public class PopActivity extends AppCompatActivity{
         getWindow().setAttributes(params);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        active = false;
+    }
 
 }

@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        notificationManager = NotificationManagerCompat.from(this);
-
-
-
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
         exampleList.add(new ExampleItem(R.drawable.ic_gamepad, "Profile Gaming", "Time between breaks: 20min"));
         exampleList.add(new ExampleItem(R.drawable.ic_audio, "Profile Music", "Time between breaks 30min"));
@@ -62,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
-    //tva sa dvete funkcii
-
 
     public void sendMessage(View view) {
         startActivity(new Intent(this, Timer.class));
